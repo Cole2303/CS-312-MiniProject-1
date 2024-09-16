@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" message="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    
+    <ul>
+        <% posts.forEach((post, index) => { %>
+            <li>
+                <h2><%= post.title %></h2>
+                <p><%= post.message %></p>
+                <small>By <%= post.author %> on <%= post.createdAt %></small>
+                <div class="placeholder-100pct">&nbsp;</div>
+                <a href="/edit/<%= index %>">Edit Your Post!</a>
+                <form action="/delete/<%= index %>" method="POST" style="display:inline;">
+                <button type="submit">Delete Post</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <h2>Create A Post</h2>
+    <form action="/" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="message" placeholder="message" required></textarea>
+        <input type="text" name="author" placeholder="Name" required>
+        <button type="submit">Post</button>
+    </form>
+</body>
+</html>
